@@ -31,6 +31,15 @@ def plot_graphs(history, string):
   plt.show()
 
 def train_model(vocab_size=10000, embedding_dim=16, max_length=120, trunc_type='post', oov_tok='<OOV>', num_epochs=10):
+    """
+    hyperparameters:
+    vocab_size=10000 this means that the tokenizer will only consider the 10000 most common words,
+    embedding_dim=16 this is the dimension of the embedding vectors which means that each word will be represented by a vector of 16 dimensions; reason why 16 is because it is a common value yun lang HAHAHHAA
+    max_length=120 this is the maximum length of the sequences; this is the length of the padded sequences which in laymans term is the length of the sentences
+    trunc_type='post' this is the truncation type which means that if the sentence is longer than the max_length, the extra words will be truncated from the end of the sentence
+    oov_tok='<OOV>' this is the out-of-vocabulary token which is used to replace words that are not in the tokenizer's word index
+    num_epochs=10 this is the number of epochs for training the model pero di naman to kumpleto because we have early stopping callback to stop overfitting
+    """
     """Trains a Bidirectional LSTM model for sentiment analysis."""
     train_data, test_data = load_dataset()
     # test_data.head()
@@ -50,9 +59,10 @@ def train_model(vocab_size=10000, embedding_dim=16, max_length=120, trunc_type='
 
     history = model.fit(train_padded, train_labels, epochs=num_epochs,
                         validation_data=(test_padded, test_labels), callbacks=early_stopping)
-    _, acc = model.evaluate(test_padded, test_labels, verbose=0)
+    acc, val_acc = model.evaluate(test_padded, test_labels, verbose=0)
     print('> Test Accuracy: %.3f' % (_ * 100))
-    print('> val_accuracy: %.3f' % (acc * 100))
+    print('> accuracy: %.3f' % (acc * 100))
+    print('> val_accuracy: %.3f' % (val_acc * 100))
     plot_graphs(history, 'loss')
     plot_graphs(history, 'accuracy')
     

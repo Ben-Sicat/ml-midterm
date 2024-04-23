@@ -1,7 +1,7 @@
 import subprocess
 
 # Install dependencies from requirements.txt
-subprocess.run(["pip", "install", "-r", "requirements.txt"])
+subprocess.run(["pip", "install", "-r", "requirments.txt"])
 
 # Train the model (assuming train.py is the script)
 subprocess.run(["python", "train.py"])
