@@ -11,3 +11,16 @@ def define_model(vocab_size=10000, embedding_dim=16, max_length=120):
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     model.summary()
     return model
+
+    
+    
+    """
+        activations functions:
+        
+        
+        relu: x if x > 0
+              0 if x <= 0  
+              
+        sigmoid: tanh
+    
+    """

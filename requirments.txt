@@ -1,5 +1,5 @@
-tensorflow==2.x.y
-keras==2.x.y
+tensorflow
+keras
 tensorflow-datasets
 matplotlib
 imbalanced-learn

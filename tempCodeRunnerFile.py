@@ -1,1 +1,1 @@
-    from imblearn.over_sampling import RandomOverSampler
+subprocess.run(["python", "train.py"])
